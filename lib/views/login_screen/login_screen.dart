@@ -177,6 +177,7 @@ class LoginScreen extends StatelessWidget {
                                   height: DimensionConstants.d54.h,
                                   width: DimensionConstants.d374.w,
                                   child: Center(
+
                                     child: Text("logIn".tr()).boldText(
                                         ColorConstants.whiteColor,
                                         DimensionConstants.d20.sp,
