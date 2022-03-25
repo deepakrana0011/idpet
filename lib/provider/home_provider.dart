@@ -1,12 +1,40 @@
-import 'package:dog_app/constants/color_constants.dart';
-import 'package:dog_app/constants/image_constants.dart';
-import 'package:dog_app/provider/base_provider.dart';
-import 'package:dog_app/views/base_view.dart';
-import 'package:dog_app/views/home_screen/home_screen.dart';
-import 'package:dog_app/views/login_screen/login_screen.dart';
-import 'package:dog_app/views/sign_up_screen/sign_up.dart';
-import 'package:dog_app/widgets/image_view.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'dart:io';
 
-class HomeScreenProvider extends BaseProvider {}
+import 'package:dog_app/enum/save_token.dart';
+import 'package:dog_app/enum/viewstate.dart';
+import 'package:dog_app/helper/date_functions.dart';
+import 'package:dog_app/helper/dialogue_helper.dart';
+import 'package:dog_app/helper/shared_pref.dart';
+import 'package:dog_app/locator.dart';
+import 'package:dog_app/model/getUserResponse.dart';
+import 'package:dog_app/provider/base_provider.dart';
+import 'package:dog_app/services/fetchException.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
+
+class HomeScreenProvider extends BaseProvider {
+ GetDetailsResponse? details;
+ SaveToken saveToken = locator<SaveToken>();
+  var datetime;
+  Future<void> getHomeDetail(BuildContext context) async {
+    setState(ViewState.Busy);
+    try {
+      var model = await api.getDeatils();
+      details = model;
+      setState(ViewState.Idle);
+      if (model.success) {
+        saveToken.id=model.data!.id;
+        datetime= getDateDiffInYears(details!.data!.dogBirthDate);
+        SharedPref.prefs
+            ?.setInt(SharedPref.DOG_BIRTH_DATE, details!.data!.dogBirthDate);
+      } else {}
+    } on FetchDataException catch (c) {
+      setState(ViewState.Idle);
+      DialogHelper.showMessage(context, c.toString());
+    } on SocketException catch (c) {
+      setState(ViewState.Idle);
+      DialogHelper.showMessage(context, "internet_connection".tr());
+    }
+  }
+
+}

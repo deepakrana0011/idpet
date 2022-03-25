@@ -2,7 +2,7 @@ class ImagesConstants {
   static const primaryImage = "images/primaryImage.png";
   static const logInPixel = "images/logInPixel.png";
   static const backArrow = "images/backArrow.svg";
-  static const confirm = "images/conferm.png";
+  static const confirm = "images/confirm.png";
   static const signUp = "images/SignUp.png";
   static const imagePicker = "images/imagePicker.svg";
   static const valueChecked = "valueChecked.png";
@@ -14,4 +14,5 @@ class ImagesConstants {
   static const profileIconActive = "images/profileIconActive.svg";
   static const edit = "images/edit.svg";
   static const logOut = "images/logOut.svg";
+  static const nfcScanner ="images/nfcScanner.png";
 }

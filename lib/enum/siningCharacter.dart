@@ -1,1 +1,1 @@
-enum SingingCharacter { Male, Female }
+enum SigningCharacter { Male, Female }

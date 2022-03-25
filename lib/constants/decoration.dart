@@ -18,51 +18,41 @@ class ViewDecoration {
       String? path,
       Color? textFiledColor}) {
     return InputDecoration(
-      prefixIcon: prefixIcon == null ? null : prefixIcon,
-      suffixIcon: suffixIcon != null
-          ? null
-          : imageView
-              ? Container(
-                  height: 1.h,
-                  child: ImageView(
-                    path: path,
+      contentPadding: EdgeInsets.symmetric(vertical: DimensionConstants.d20.h
+      ,horizontal: DimensionConstants.d15.w),
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon != null
+            ? null
+            : imageView
+                ? Container(
                     height: 1.h,
-                  ))
-              : suffixIcon,
-      hintText: fieldName,
-      hintStyle: textFieldStyle(DimensionConstants.d18.sp,
-          textFiledColor ?? ColorConstants.lightGrayColor),
-      contentPadding: EdgeInsets.only(
-          top: DimensionConstants.d7.h,
-          left: DimensionConstants.d20.w,
-          right: DimensionConstants.d30.w),
-      border: InputBorder.none,
-      /*errorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            color: ColorConstants.lightGrayTextFiled,
-          ),
-          borderRadius: BorderRadius.all(Radius.circular(15))),*/
-/*
-
-       enabledBorder: OutlineInputBorder(
+                    child: ImageView(
+                      path: path,
+                      height: 1.h,
+                    ))
+                : suffixIcon,
+        hintText: fieldName,
+        hintStyle: textFieldStyle(DimensionConstants.d18.sp, textFiledColor ?? ColorConstants.lightGrayColor),
+        border: InputBorder.none,
+        fillColor: ColorConstants.lightGrayTextFiled,
+        filled: true,
+        enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-                color: fillColor ?? ColorConstants.lightGrayColor, width: 5),
+                color: fillColor ?? Colors.transparent, width: 0),
             borderRadius: BorderRadius.all(Radius.circular(radius ?? 8))),
         disabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-                color: fillColor ?? ColorConstants.lightGrayColor, width: 1),
+                color: fillColor ?? Colors.transparent, width: 0),
             borderRadius: BorderRadius.all(Radius.circular(radius ?? 8))),
         focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: color, width: 1),
+            borderSide: BorderSide(color: color, width: 0),
             borderRadius: BorderRadius.all(Radius.circular(radius ?? 8))),
         errorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: ColorConstants.whiteColor, width: 5),
+            borderSide: BorderSide(color: Colors.transparent, width: 0),
             borderRadius: BorderRadius.all(Radius.circular(8))),
         focusedErrorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.red, width: 1),
+            borderSide: BorderSide(color: Colors.transparent, width: 0),
             borderRadius: BorderRadius.all(Radius.circular(8))));
-*/
-    );
   }
 
   static InputDecoration inputDecorationWithCurvePassword(
@@ -77,51 +67,42 @@ class ViewDecoration {
       String? path,
       Color? textFiledColor}) {
     return InputDecoration(
+        contentPadding: EdgeInsets.symmetric(vertical: DimensionConstants.d20.h
+            ,horizontal: DimensionConstants.d15.w),
       prefixIcon: prefixIcon == null ? null : prefixIcon,
       suffixIcon: suffixIcon != null
-          ? null
-          : imageView
+          ? suffixIcon
+          :/* imageView
               ? Container(
                   height: 1.h,
                   child: ImageView(
                     path: path,
                     height: 1.h,
                   ))
-              : suffixIcon,
+              : */null,
       hintText: fieldName,
       hintStyle: textFieldStyle(DimensionConstants.d18.sp,
           textFiledColor ?? ColorConstants.lightGrayColor),
-      contentPadding: EdgeInsets.only(
-          top: DimensionConstants.d7.h,
-          left: DimensionConstants.d22.w,
-          right: DimensionConstants.d100.w),
-      border: InputBorder.none,
-      /*errorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            color: ColorConstants.lightGrayTextFiled,
-          ),
-          borderRadius: BorderRadius.all(Radius.circular(15))),*/
-/*
-
-       enabledBorder: OutlineInputBorder(
+        border: InputBorder.none,
+        fillColor: ColorConstants.lightGrayTextFiled,
+        filled: true,
+        enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-                color: fillColor ?? ColorConstants.lightGrayColor, width: 5),
+                color: fillColor ?? Colors.transparent, width: 0),
             borderRadius: BorderRadius.all(Radius.circular(radius ?? 8))),
         disabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-                color: fillColor ?? ColorConstants.lightGrayColor, width: 1),
+                color: fillColor ?? Colors.transparent, width: 0),
             borderRadius: BorderRadius.all(Radius.circular(radius ?? 8))),
         focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: color, width: 1),
+            borderSide: BorderSide(color: color, width: 0),
             borderRadius: BorderRadius.all(Radius.circular(radius ?? 8))),
         errorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: ColorConstants.whiteColor, width: 5),
+            borderSide: BorderSide(color: Colors.transparent, width: 0),
             borderRadius: BorderRadius.all(Radius.circular(8))),
         focusedErrorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.red, width: 1),
+            borderSide: BorderSide(color: Colors.transparent, width: 0),
             borderRadius: BorderRadius.all(Radius.circular(8))));
-*/
-    );
   }
 
   /*static InputDecoration inputDecorationBottomLine(

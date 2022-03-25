@@ -31,8 +31,8 @@ class CustomDialog extends StatelessWidget {
               decoration: BoxDecoration(
                   color: ColorConstants.primaryColor,
                   shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(
-                    10,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(DimensionConstants.d10.r),topRight: Radius.circular(DimensionConstants.d10.r)
                   )),
               child: Padding(
                 padding: const EdgeInsets.all(10),
