@@ -1,18 +1,13 @@
-
-class AddPetResponse {
+class GetSinglePetResponse {
   late bool success;
   late String message;
-  String? jwtToken;
   Data? data;
 
-  AddPetResponse.fromJson(Map<String, dynamic> json) {
+  GetSinglePetResponse.fromJson(Map<String, dynamic> json) {
     success = json["success"];
-    message = json["message"];
-    jwtToken = json["jwtToken"] != null ? (json["jwtToken"]) : null;
     data = json["data"] != null ? Data.fromJson(json["data"]) : null;
   }
 }
-
 class Data {
   late String petName;
   late String petBreed;
@@ -20,12 +15,9 @@ class Data {
   late String description;
   late String image;
   late String id;
+  late String veterinaryNumber;
   late String bannerImage;
   late int petBirthDate;
-  late String veterinaryNumber;
-
-
-
   Data.fromJson(Map<String, dynamic> json) {
     id = json["_id"];
     petName = json["petName"];
@@ -36,5 +28,6 @@ class Data {
     bannerImage = json["bannerImage"];
     petBirthDate = json["petBirthDate"];
     veterinaryNumber = json["veterinaryNumber"];
+
   }
 }

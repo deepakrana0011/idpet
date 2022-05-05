@@ -1,9 +1,15 @@
+import 'package:dog_app/model/edit_petProfile_Response.dart' as editPet;
+import 'package:dog_app/model/getSinglePetDetailResponse.dart' as getSinglePet;
 import 'package:dog_app/model/getUserResponse.dart';
+import 'package:dog_app/views/add_pet_info/addPet_info.dart';
 import 'package:dog_app/views/create_password_screen/create_password.dart';
 import 'package:dog_app/views/dashbord/dashbord.dart';
+import 'package:dog_app/views/edit_pet_profile_screen/edit_pet_profile_screen.dart';
 import 'package:dog_app/views/edit_profile_screen/edit_profile_screen.dart';
 import 'package:dog_app/views/forgot_password_screen/forgot_password.dart';
-import 'package:dog_app/views/home_screen/home_screen.dart';
+import 'package:dog_app/views/home_screen/homeView_pet.dart';
+import 'package:dog_app/views/select_pet_screen/selectPetScreen.dart';
+import 'package:dog_app/views/pet_details_screen/ProfileView_singlePet.dart';
 import 'package:dog_app/views/login_screen/login_screen.dart';
 import 'package:dog_app/views/nfc_Scan/bar_code_scan.dart';
 import 'package:dog_app/views/profile_screen/profile_screen.dart';
@@ -37,9 +43,25 @@ class Router {
         return MaterialPageRoute(
             builder: (_) => const SignUpScreen(), settings: settings);
 
-      case RoutesConstants.homeScreen:
+      case RoutesConstants.singlePetDetailsScreen:
         return MaterialPageRoute(
-            builder: (_) => const HomeScreen(), settings: settings);
+            builder: (_) => SinglePetDetails(petId:settings.arguments as String), settings: settings);
+      case RoutesConstants.petHome:
+        return MaterialPageRoute(
+            builder: (_) => const HomeViewPetScreen(), settings: settings);
+
+      case RoutesConstants.editPetProfileScreen:
+        return MaterialPageRoute(
+            builder: (_) => EditPetProfileScreen(data:settings.arguments as getSinglePet.Data,), settings: settings);
+      /*case RoutesConstants.petProfileScreen:
+        return MaterialPageRoute(
+            builder: (_) => const PetProfileScreen(), settings: settings);*/
+      case RoutesConstants.addPetInfo:
+        return MaterialPageRoute(
+            builder: (_) => const AddPetInfo(), settings: settings);
+      case RoutesConstants.selectPetScreen:
+        return MaterialPageRoute(
+            builder: (_) => const SelectPetScreen(), settings: settings);
 
       case RoutesConstants.dashBoard:
         return MaterialPageRoute(

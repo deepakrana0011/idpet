@@ -1,1 +1,1 @@
-enum SigningCharacter { Male, Female }
+enum SigningCharacter { Maschio, Femmina }

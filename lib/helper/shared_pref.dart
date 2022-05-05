@@ -4,10 +4,10 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPref{
-  static const DOG_NAME ="dogName" ;
-  static const DOG_BREED="dogBreed";
+  static const PET_NAME ="petName" ;
+  static const PET_BREED="petBreed";
   static const OWNER_NAME="ownerName";
-  static const DOG_SEX="dogSex";
+  static const PET_SEX="petSex";
   static const WHATSAPP= "whatsapp";
   static const CONTACT_PHONE="contactPhone";
   static const IMAGE = "image";
@@ -17,17 +17,17 @@ class SharedPref{
   static const ID ="_ID" ;
   static const VERIFY_STATUS="verifyStatus";
   static const EMAIL="email";
-  static const DOG_BIRTH_DATE="dogBirthDate";
+  static const PET_BIRTH_DATE="petBirthDate";
   static const ADDRESS="address";
   static const VETERINARYNUMBER="veterinaryNumber";
   static const DESCRIPTION="description";
   static SharedPreferences? prefs;
 
   static clearSharedpref () async{
-    prefs?.remove(DOG_NAME);
-    prefs?.remove(DOG_BREED);
+    prefs?.remove(PET_NAME);
+    prefs?.remove(PET_BREED);
     prefs?.remove(OWNER_NAME);
-    prefs?.remove(DOG_SEX);
+    prefs?.remove(PET_SEX);
     prefs?.remove(WHATSAPP);
     prefs?.remove(CONTACT_PHONE);
     prefs?.remove(IMAGE);
@@ -37,7 +37,7 @@ class SharedPref{
     prefs?.remove(ID);
     prefs?.remove(VERIFY_STATUS);
     prefs?.remove(EMAIL);
-    prefs?.remove(DOG_BIRTH_DATE);
+    prefs?.remove(PET_BIRTH_DATE);
     prefs?.remove(ADDRESS);
     prefs?.remove(VETERINARYNUMBER);
     prefs?.remove(DESCRIPTION);

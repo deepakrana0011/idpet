@@ -1,4 +1,3 @@
-/*
 import 'dart:io';
 
 import 'package:dog_app/enum/save_token.dart';
@@ -13,11 +12,11 @@ import 'package:dog_app/services/fetchException.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 
-class HomeScreenProvider extends BaseProvider {
- GetDetailsResponse? details;
- SaveToken saveToken = locator<SaveToken>();
+class ProfileScreenProvider extends BaseProvider {
+  GetDetailsResponse? details;
+  SaveToken saveToken = locator<SaveToken>();
   var datetime;
-  Future<void> getHomeDetail(BuildContext context) async {
+  Future<void> getProfileDetail(BuildContext context) async {
     setState(ViewState.Busy);
     try {
       var model = await api.getDeatils();
@@ -25,11 +24,6 @@ class HomeScreenProvider extends BaseProvider {
       setState(ViewState.Idle);
       if (model.success) {
         saveToken.id=model.data!.id;
-       */
-/* datetime= getDateDiffInYears(details!.data!.dogBirthDate);
-        SharedPref.prefs
-            ?.setInt(SharedPref.DOG_BIRTH_DATE, details!.data!.dogBirthDate);*//*
-
       } else {}
     } on FetchDataException catch (c) {
       setState(ViewState.Idle);
@@ -41,4 +35,3 @@ class HomeScreenProvider extends BaseProvider {
   }
 
 }
-*/

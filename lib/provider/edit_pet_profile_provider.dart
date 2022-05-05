@@ -1,14 +1,12 @@
 import 'dart:io';
 
 import 'package:dog_app/constants/route_constants.dart';
-import 'package:dog_app/enum/save_token.dart';
 import 'package:dog_app/enum/viewstate.dart';
+import 'package:dog_app/helper/date_functions.dart';
 import 'package:dog_app/helper/dialogue_helper.dart';
 import 'package:dog_app/helper/shared_pref.dart';
 import 'package:dog_app/provider/base_provider.dart';
-import 'package:dog_app/services/apiServices.dart';
 import 'package:dog_app/services/fetchException.dart';
-import 'package:dog_app/views/verifiction_code_screen/verification_code.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,78 +14,28 @@ import 'package:image_picker/image_picker.dart';
 
 import '../constants/color_constants.dart';
 import '../enum/siningCharacter.dart';
-import '../helper/date_functions.dart';
-import '../locator.dart';
 
-class AddPetProvider extends BaseProvider {
+class EditPetProfileProvider extends BaseProvider {
   final datetime = TextEditingController();
   final petNameController = TextEditingController();
   final petBreadController = TextEditingController();
   final veterinaryNumberController = TextEditingController();
   final descriptionController =TextEditingController();
-  SaveToken saveToken = locator<SaveToken>();
-  List date = [];
-  List date2 = [];
-  var dateTime;
-  String fileBackground = '';
-  String fileProfile = '';
-  SigningCharacter? character = SigningCharacter.Maschio;
-  String gender = "male".tr();
-
   File? imageFile;
   File? bannerImage;
   var dateMilisec;
   var status;
+  SigningCharacter? character = SigningCharacter.Maschio;
+  String gender = "male".tr();
 
-  //File? get imageFile => ImageFile;
-
-  Future<bool> Addpet(
-      BuildContext context,
-      String petName,
-      String petSex,
-      String petBreed,
-      String vetenaryNumber,
-      int petBirthDate,
-      File image,
-      File bannerimage) async {
-    setState(ViewState.Busy);
-    try {
-      var model = await api.addPet(
-          petName,
-          petSex,
-          petBreed,
-          descriptionController.text,
-          vetenaryNumber,
-          petBirthDate,
-          image,
-          bannerimage);
-      if (model.success) {
-        saveToken.registerToken = model.jwtToken.toString();
-        SharedPref.prefs?.setString(SharedPref.PET_BIRTH_DATE, selectedDate.toString());
-        
-        Navigator.of(context).pushNamed(RoutesConstants.dashBoard);
-        DialogHelper.showMessage(context, model.message);
-        print(model.data);
-      } else {
-        DialogHelper.showMessage(context, model.message);
-      }
-      setState(ViewState.Idle);
-      return true;
-    } on FetchDataException catch (c) {
-      setState(ViewState.Idle);
-      DialogHelper.showMessage(context, c.toString());
-      return false;
-    } on SocketException catch (e) {
-      setState(ViewState.Idle);
-      DialogHelper.showMessage(context, 'internet_connection'.tr());
-      return false;
-    }
+  checkBoxValue() {
+    notifyListeners();
   }
 
   Future<void> selectAge(BuildContext context) async {
     showDatePicker(
       context: context,
-      initialDate:DateTime.now(),
+      initialDate: DateTime.now(),
       firstDate: DateTime(1950),
       lastDate: DateTime.now(),
       builder: (context, child) {
@@ -115,7 +63,6 @@ class AddPetProvider extends BaseProvider {
 
   DateTime? selectedDate;
   File? bimage;
-
   Future getImageBackGround(BuildContext context, int type) async {
     Navigator.of(context).pop();
 
@@ -169,13 +116,56 @@ class AddPetProvider extends BaseProvider {
 
   void setImageProfile(File image) {
     imageFile = image;
-    fileProfile = image.path.toString();
     notifyListeners();
   }
 
   void setImageBackground(File image) {
     bannerImage = image;
-    fileBackground = image.path.toString();
     notifyListeners();
+  }
+  Future<bool> editpetProfileInfo( BuildContext context,
+      String petId,
+      String petName,
+      String petSex,
+      String petBreed,
+      String vetenaryNumber,
+      int petBirthDate,
+      File? image,
+      File? bannerimage
+      )async {
+    setState(ViewState.Busy);
+    try {
+      var model = await api.editPetProfile(
+        petId,
+        petName,
+        petSex,
+        petBreed,
+        descriptionController.text,
+        vetenaryNumber,
+        petBirthDate,
+        image,
+        bannerimage,
+      );
+      if(model.success){
+        setState(ViewState.Idle);
+        Navigator.pushNamedAndRemoveUntil(context, RoutesConstants.dashBoard, (Route<dynamic> route) => false);
+        DialogHelper.showMessage(context, model.message);
+        return true;
+      }else{
+        DialogHelper.showMessage(context, model.message);
+        setState(ViewState.Idle);
+        return false;
+      }
+
+    } on FetchDataException catch (c) {
+      setState(ViewState.Idle);
+      DialogHelper.showMessage(context, c.toString());
+      return false;
+    } on SocketException catch (c) {
+      setState(ViewState.Idle);
+      DialogHelper.showMessage(context, 'Internet connection');
+      return false;
+    }
+
   }
 }

@@ -22,36 +22,37 @@ class CustomDialog extends StatelessWidget {
       backgroundColor: Colors.transparent,
       child: RoundCornerShape(
         bgColor: Colors.white,
-        radius: DimensionConstants.d20.w,
+        radius: DimensionConstants.d10.r,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Ink(
+            Ink(height: 45.h,
               decoration: BoxDecoration(
                   color: ColorConstants.primaryColor,
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(DimensionConstants.d10.r),topRight: Radius.circular(DimensionConstants.d10.r)
                   )),
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Align(
-                    alignment: Alignment.center,
-                    child: const Text(
-                      "Choose from",
-                    ).mediumText(
-                        ColorConstants.whiteColor, 20.sp, TextAlign.center)),
-              ),
+              child: Align(
+                  alignment: Alignment.center,
+                  child: const Text(
+                    "Choose from",
+                  ).mediumText(
+                      ColorConstants.whiteColor, 20.sp, TextAlign.center)),
             ),
             GestureDetector(
               onTap: galleryClick,
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  "Phone gallery",
-                  style: TextStyle(
-                      color: ColorConstants.primaryColor, fontSize: 20.sp),
+              child: Container(width: double.maxFinite,
+                height: 40.h,
+                color: Colors.transparent,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Phone gallery",
+                    style: TextStyle(
+                        color: ColorConstants.primaryColor, fontSize: 20.sp),
+                  ),
                 ),
               ),
             ),
@@ -61,12 +62,15 @@ class CustomDialog extends StatelessWidget {
             ),
             GestureDetector(
               onTap: cameraClick,
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  "Camera",
-                  style: TextStyle(
-                      color: ColorConstants.primaryColor, fontSize: 20.sp),
+              child: Container(width: double.maxFinite,
+                height: 40.h,
+                color: Colors.transparent,
+                child: Align(alignment: Alignment.center,
+                  child: Text(
+                    "Camera",
+                    style: TextStyle(
+                        color: ColorConstants.primaryColor, fontSize: 20.sp),
+                  ),
                 ),
               ),
             ),
@@ -76,12 +80,16 @@ class CustomDialog extends StatelessWidget {
             ),
             GestureDetector(
               onTap: cancelClick,
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  "Cancel",
-                  style: TextStyle(
-                      color: ColorConstants.primaryColor, fontSize: 20.sp),
+              child: Container(width: double.maxFinite,
+                height: 40.h,
+                color: Colors.transparent,
+                child: Align(alignment: Alignment.center,
+
+                  child: Text(
+                    "Cancel",
+                    style: TextStyle(
+                        color: ColorConstants.primaryColor, fontSize: 20.sp),
+                  ),
                 ),
               ),
             )

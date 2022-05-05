@@ -7,6 +7,7 @@ import 'package:dog_app/helper/dialogue_helper.dart';
 import 'package:dog_app/helper/keyboard_helper.dart';
 import 'package:dog_app/helper/shared_pref.dart';
 import 'package:dog_app/provider/home_provider.dart';
+import 'package:dog_app/provider/profile_provider.dart';
 import 'package:dog_app/views/base_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<HomeScreenProvider>(onModelReady: (provider) {
-      provider.getHomeDetail(context);
+    return BaseView<ProfileScreenProvider>(onModelReady: (provider) {
+      provider.getProfileDetail(context);
     }, builder: (context, provider, _) {return Scaffold(
             backgroundColor: ColorConstants.whiteColor,
             appBar: AppBar(
@@ -50,7 +51,7 @@ class ProfileScreen extends StatelessWidget {
                         ))),
                 GestureDetector(
                   onTap: () {
-                    DialogHelper.showDialogWithTwoButtons(context, 'Signout', 'Yes', 'Cancel', 'Are you sure you want to signout?',
+                    DialogHelper.showDialogWithTwoButtons(context, 'signout'.tr(), 'yes'.tr(), 'cancel'.tr(), 'are_you_sure_you_want_signout'.tr(),
                         positiveButtonPress: (){
                           _signOut(context);
                         }, negativeButtonPress: () {
@@ -77,95 +78,17 @@ class ProfileScreen extends StatelessWidget {
               child: Center(
                 child: Column(
                   children: <Widget>[
-                    Stack(
-                      children: <Widget>[
-                        Container(
-                          height: DimensionConstants.d200.h,
-                          width: DimensionConstants.d414.w,
-                          color: ColorConstants.imageBackgroundColor,
-                          child: ImageView(
-                            path:ApiConstant.BASE_URL +
-                                provider.details!.data!.bannerImage,
-
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              top: DimensionConstants.d145.h,
-                              left: DimensionConstants.d135.w,
-                              right: DimensionConstants.d141.w),
-                          child: Material(
-                            elevation: DimensionConstants.d4,
-                            shape: const CircleBorder(),
-                            child: CircleAvatar(
-                              radius: DimensionConstants.d70.r,
-                              backgroundColor: ColorConstants.whiteColor,
-                              child: ClipRRect(
-                                //clipBehavior: Clip.antiAlias,
-                                borderRadius: BorderRadius.circular(DimensionConstants.d70.r),
-                                child: ImageView(
-                                  path: ApiConstant.BASE_URL +
-                                      provider.details!.data!.image,
-                                  width: double.maxFinite,
-                                  height: double.maxFinite,
-                                  fit: BoxFit.cover,
-                                  // radius:DimensionConstants.d70.r ,
-
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: DimensionConstants.d20.h),
                     Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: DimensionConstants.d20.w),
                       child: Column(
                         children: [
-                          SizedBox(
-                            height: DimensionConstants.d60.h,
-                            child: TextFormField(
-                              readOnly: true,
-                              decoration: ViewDecoration.inputDecorationWithCurve(
-                                provider.details!.data!.dogName,
-                                Colors.transparent,
-                                radius: DimensionConstants.d15.r,
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: DimensionConstants.d20.h),
-                          SizedBox(
-                            height: DimensionConstants.d60.h,
-                            child: TextFormField(
-                              readOnly: true,
-                              decoration: ViewDecoration.inputDecorationWithCurve(
-                                  provider.details!.data!.dogBreed,
-                                Colors.transparent,
-                                radius: DimensionConstants.d15.r,
-                              ),
-                            ),
-                          ),
+
+
                           SizedBox(
                             height: DimensionConstants.d20.h,
                           ),
-                          SizedBox(
-                            height: DimensionConstants.d60.h,
-                            child: TextFormField(
-                                readOnly: true,
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.text,
-                                decoration: ViewDecoration.inputDecorationWithCurve(
-                                    provider.datetime.toString(),
-                                      Colors.transparent,
-                                  radius: DimensionConstants.d15.r,
-                                )),
-                          ),
-                          SizedBox(
-                            height: DimensionConstants.d20.h,
-                          ),
+
                           SizedBox(
                             height: DimensionConstants.d60.h,
                             child: TextFormField(
@@ -185,7 +108,8 @@ class ProfileScreen extends StatelessWidget {
                             child: TextFormField(
                               readOnly: true,
                               decoration: ViewDecoration.inputDecorationWithCurve(
-                                provider.details!.data!.ownerSurname,
+                             provider.details!.data!.ownerSurname,
+
                                 Colors.transparent,
                                 radius: DimensionConstants.d15.r,
                               ),
@@ -200,6 +124,7 @@ class ProfileScreen extends StatelessWidget {
                               readOnly: true,
                               decoration: ViewDecoration.inputDecorationWithCurve(
                                 provider.details!.data!.address,
+
                                 Colors.transparent,
                                 radius: DimensionConstants.d15.r,
                               ),
@@ -213,7 +138,7 @@ class ProfileScreen extends StatelessWidget {
                             child: TextFormField(
                               readOnly: true,
                               decoration: ViewDecoration.inputDecorationWithCurve(
-                                provider.details!.data!.contactPhone,
+                              provider.details!.data!.contactPhone,
                                 Colors.transparent,
                                 radius: DimensionConstants.d15.r,
                               ),
@@ -227,8 +152,8 @@ class ProfileScreen extends StatelessWidget {
                             child: TextFormField(
                               readOnly: true,
                               decoration: ViewDecoration.inputDecorationWithCurve(
-                                provider.details!.data!.whatsapp,
-                                Colors.transparent,
+                             provider.details!.data!.whatsapp,
+                               Colors.transparent,
                                 radius: DimensionConstants.d15.r,
                               ),
                             ),
@@ -241,37 +166,7 @@ class ProfileScreen extends StatelessWidget {
                             child: TextFormField(
                               readOnly: true,
                               decoration: ViewDecoration.inputDecorationWithCurve(
-                                provider.details!.data!.veterinaryNumber,
-                                Colors.transparent,
-                                radius: DimensionConstants.d15.r,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: DimensionConstants.d20.h,
-                          ),
-                          SizedBox(
-                            height: DimensionConstants.d110.h,
-                            child: TextFormField(
-                              readOnly: true,
-                              maxLines: 3,
-                              decoration:
-                              ViewDecoration.inputDecorationWithCurve(
-                                provider.details!.data!.description,
-                                Colors.transparent,
-                                radius: DimensionConstants.d15.r,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: DimensionConstants.d20.h,
-                          ),
-                          SizedBox(
-                            height: DimensionConstants.d60.h,
-                            child: TextFormField(
-                              readOnly: true,
-                              decoration: ViewDecoration.inputDecorationWithCurve(
-                                provider.details!.data!.email,
+                               provider.details!.data!.email,
                                 Colors.transparent,
                                 radius: DimensionConstants.d15.r,
                               ),
@@ -297,7 +192,7 @@ class ProfileScreen extends StatelessWidget {
   Future<void> _signOut(BuildContext context) async {
     SharedPref.clearSharedpref();
     KeyboardHelper.hideKeyboard(context);
-    Navigator.pushNamed(context,RoutesConstants.logInScreen);
+    Navigator.pushNamedAndRemoveUntil(context,RoutesConstants.logInScreen, (Route<dynamic> route) => false);
     DialogHelper.showMessage(
         context, 'Signout successfully');
   }

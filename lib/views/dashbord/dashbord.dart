@@ -1,8 +1,10 @@
 import 'package:dog_app/constants/dimension_constants.dart';
 import 'package:dog_app/extensions/allextensions.dart';
+import 'package:dog_app/views/home_screen/homeView_pet.dart';
 import 'package:dog_app/views/home_screen/home_screen.dart';
 import 'package:dog_app/views/login_screen/login_screen.dart';
 import 'package:dog_app/views/nfc_Scan/bar_code_scan.dart';
+import 'package:dog_app/views/select_pet_screen/selectPetScreen.dart';
 import 'package:dog_app/views/profile_screen/profile_screen.dart';
 import 'package:dog_app/views/sign_up_screen/sign_up.dart';
 import 'package:flutter/material.dart';
@@ -29,8 +31,10 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
 
   static final List<Widget> _widgetOptions = <Widget>[
-    HomeScreen(),
-    NfcScan(),
+    //HomeScreen(),
+    HomeViewPetScreen(),
+    SelectPetScreen(),
+   // NfcScan(),
    ProfileScreen()
   ];
 

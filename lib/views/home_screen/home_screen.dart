@@ -1,8 +1,10 @@
+/*
 import 'package:dog_app/constants/api_constants.dart';
 import 'package:dog_app/constants/image_constants.dart';
 import 'package:dog_app/constants/route_constants.dart';
 import 'package:dog_app/enum/viewstate.dart';
 import 'package:dog_app/extensions/allextensions.dart';
+import 'package:dog_app/provider/get_singlePet_provider.dart';
 import 'package:dog_app/provider/home_provider.dart';
 import 'package:dog_app/widgets/image_view.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -16,8 +18,8 @@ import '../../constants/dimension_constants.dart';
 import '../base_view.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
+  HomeScreen({Key? key, required this.petId}) : super(key: key);
+ String petId;
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -25,8 +27,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return BaseView<HomeScreenProvider>(onModelReady: (provider) {
-      provider.getHomeDetail(context);
+    return BaseView<GetSinglePetProvider>(onModelReady: (provider) {
+      provider.getSinglePetDetail(context,widget.petId);
     }, builder: (context, provider, _) {
       return Scaffold(
           backgroundColor: ColorConstants.backGround,
@@ -38,7 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 DimensionConstants.d25.sp, TextAlign.center),
             backgroundColor: ColorConstants.primaryColor,
           ),
-          body: provider.state == ViewState.Busy || provider.details == null
+          body: provider.state == ViewState.Busy*/
+/* || provider.details == null*//*
+
               ?  Container(height: double.maxFinite,
                 width: double.maxFinite,
                 child: Center(
@@ -58,10 +62,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: DimensionConstants.d414.w,
                               color: ColorConstants.imageBackgroundColor,
                               child: ImageView(
-                                path:ApiConstant.BASE_URL +
-                                    provider.details!.data!.bannerImage,
+                                path:ImagesConstants.logo
 
-                                fit: BoxFit.cover,
+                                */
+/*ApiConstant.BASE_URL +
+                                    provider.details!.data!.bannerImage,*//*
+
+
+                               , fit: BoxFit.cover,
                               ),
                             ),
                             Padding(
@@ -79,8 +87,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                    //clipBehavior: Clip.antiAlias,
                                     borderRadius: BorderRadius.circular(DimensionConstants.d70.r),
                                     child: ImageView(
-                                      path: ApiConstant.BASE_URL +
-                                          provider.details!.data!.image,
+                                      path: */
+/*ApiConstant.BASE_URL +
+                                          provider.details!.data!.image,*//*
+
+                                      ImagesConstants.logo,
                                       width: double.maxFinite,
                                       height: double.maxFinite,
                                       fit: BoxFit.cover,
@@ -115,7 +126,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [ Text(provider.details!.data!.dogName)
+                                  children: [ Text(*/
+/*provider.details!.data!.dogName*//*
+"")
                                       .boldText(
                                       ColorConstants.blackColor,
                                       DimensionConstants.d30.sp,
@@ -132,7 +145,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [  Text(provider.details!.data!.dogBreed)
+                                      children: [  Text(*/
+/*provider.details!.data!.dogBreed*//*
+"")
                                           .lightText(
                                           ColorConstants.lightGrayColor,
                                           DimensionConstants.d20.sp,
@@ -167,7 +182,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                          ),
                                          SizedBox(width: DimensionConstants.d20.w,),
 
-                                       Text(provider.details!.data!.dogSex)
+                                       Text(*/
+/*provider.details!.data!.dogSex*//*
+"")
                                            .lightText(
                                            ColorConstants.lightGrayColor,
                                            DimensionConstants.d18.sp,
@@ -184,7 +201,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             DimensionConstants.d20.sp,
                             TextAlign.center),
                         SizedBox(height: DimensionConstants.d7.h),
-                        Text(provider.details!.data!.veterinaryNumber).boldText(
+                        Text(*/
+/*provider.details!.data!.veterinaryNumber*//*
+"").boldText(
                             ColorConstants.blackColor,
                             DimensionConstants.d30.sp,
                             TextAlign.center),
@@ -346,3 +365,4 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 }
+*/

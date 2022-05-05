@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:dog_app/constants/color_constants.dart';
 import 'package:dog_app/constants/route_constants.dart';
 import 'package:dog_app/enum/save_token.dart';
 import 'package:dog_app/enum/viewstate.dart';

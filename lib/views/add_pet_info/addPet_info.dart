@@ -4,6 +4,7 @@ import 'package:dog_app/enum/viewstate.dart';
 import 'package:dog_app/extensions/allextensions.dart';
 import 'package:dog_app/helper/dialogue_helper.dart';
 import 'package:dog_app/helper/keyboard_helper.dart';
+import 'package:dog_app/provider/add_pet_provider.dart';
 import 'package:dog_app/provider/sign_up_provider.dart';
 import 'package:dog_app/views/base_view.dart';
 import 'package:dog_app/widgets/custom_shape.dart';
@@ -18,20 +19,18 @@ import '../../enum/siningCharacter.dart';
 import '../../widgets/custom_dialog.dart';
 import '../../widgets/image_view.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+class AddPetInfo extends StatefulWidget {
+  const AddPetInfo({Key? key}) : super(key: key);
 
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  State<AddPetInfo> createState() => _AddPetInfoState();
 }
 
-final _scaffoldkey = GlobalKey<ScaffoldState>();
-final formKey = GlobalKey<FormState>();
-
-class _SignUpScreenState extends State<SignUpScreen> {
+class _AddPetInfoState extends State<AddPetInfo> {
+  final _scaffoldkey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    return BaseView<SignUpProvider>(
+    return  BaseView<AddPetProvider>(
         onModelReady: (provider) {},
         builder: (context, provider, _) {
           return Scaffold(
@@ -40,7 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             appBar: AppBar(
               centerTitle: true,
               elevation: 0,
-              title: Text("signUp".tr()).boldText(ColorConstants.whiteColor,
+              title: Text("addDetails".tr()).boldText(ColorConstants.whiteColor,
                   DimensionConstants.d25.sp, TextAlign.center),
               backgroundColor: ColorConstants.primaryColor,
               leading: Padding(
@@ -62,7 +61,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: SafeArea(
                 child: Center(
                   child: Form(
-                    key: formKey,
                     child: Column(
                       children: <Widget>[
                         Stack(
@@ -190,10 +188,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 child: TextFormField(
                                   textCapitalization:
                                   TextCapitalization.sentences,
-                                  controller: provider.dogNameController,
+                                  controller: provider.petNameController,
                                   decoration:
                                   ViewDecoration.inputDecorationWithCurve(
-                                    "dogName".tr(),
+                                    "petName".tr(),
                                     Colors.transparent,
                                     radius: DimensionConstants.d15.r,
                                   ),
@@ -205,10 +203,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 child: TextFormField(
                                   textCapitalization:
                                   TextCapitalization.sentences,
-                                  controller: provider.dogBreadController,
+                                  controller: provider.petBreadController,
                                   decoration:
                                   ViewDecoration.inputDecorationWithCurve(
-                                    "dogBread".tr(),
+                                    "petBread".tr(),
                                     Colors.transparent,
                                     radius: DimensionConstants.d15.r,
                                   ),
@@ -219,8 +217,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               Padding(
                                 padding: EdgeInsets.only(
-                                    right: DimensionConstants.d260.w),
-                                child: Text("dogSex".tr()).regularText(
+                                    right: DimensionConstants.d240.w),
+                                child: Text("petSex".tr()).regularText(
                                     ColorConstants.blackColor,
                                     DimensionConstants.d18.sp,
                                     TextAlign.left),
@@ -229,7 +227,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 children: <Widget>[
                                   Expanded(
                                     child: ListTile(
-                                      title: Text("dogMale".tr()).regularText(
+                                      title: Text("petMale".tr()).regularText(
                                           ColorConstants.blackColor,
                                           DimensionConstants.d18.sp,
                                           TextAlign.left),
@@ -237,7 +235,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         fillColor:
                                         MaterialStateProperty.all<Color>(
                                             ColorConstants.primaryColor),
-                                        value: SigningCharacter.Male,
+                                        value: SigningCharacter.Maschio,
                                         groupValue: provider.character,
                                         onChanged: (SigningCharacter? value) {
                                           setState(() {
@@ -255,7 +253,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   ),
                                   Expanded(
                                     child: ListTile(
-                                      title: Text("dogFemale".tr()).regularText(
+                                      title: Text("petFemale".tr()).regularText(
                                           ColorConstants.blackColor,
                                           DimensionConstants.d18.sp,
                                           TextAlign.left),
@@ -263,7 +261,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         fillColor:
                                         MaterialStateProperty.all<Color>(
                                             ColorConstants.primaryColor),
-                                        value: SigningCharacter.Female,
+                                        value: SigningCharacter.Femmina,
                                         groupValue: provider.character,
                                         onChanged: (SigningCharacter? value) {
                                           setState(() {
@@ -274,9 +272,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: DimensionConstants.d10.w,
-                                  )
                                 ],
                               ),
                               SizedBox(
@@ -297,89 +292,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       Colors.transparent,
                                       radius: DimensionConstants.d15.r,
                                     )),
-                              ),
-                              SizedBox(
-                                height: DimensionConstants.d20.h,
-                              ),
-                              SizedBox(
-                                height: DimensionConstants.d60.h,
-                                child: TextFormField(
-                                  textCapitalization:
-                                  TextCapitalization.sentences,
-                                  controller: provider.ownerNameController,
-                                  decoration:
-                                  ViewDecoration.inputDecorationWithCurve(
-                                    "ownerName".tr(),
-                                    Colors.transparent,
-                                    radius: DimensionConstants.d15.r,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: DimensionConstants.d20.h,
-                              ),
-                              SizedBox(
-                                height: DimensionConstants.d60.h,
-                                child: TextFormField(
-                                  textCapitalization:
-                                  TextCapitalization.sentences,
-                                  controller: provider.ownerSurnameController,
-                                  decoration:
-                                  ViewDecoration.inputDecorationWithCurve(
-                                    "ownerSurname".tr(),
-                                    Colors.transparent,
-                                    radius: DimensionConstants.d15.r,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: DimensionConstants.d20.h,
-                              ),
-                              SizedBox(
-                                height: DimensionConstants.d60.h,
-                                child: TextFormField(
-                                  textCapitalization:
-                                  TextCapitalization.sentences,
-                                  controller: provider.addressController,
-                                  decoration:
-                                  ViewDecoration.inputDecorationWithCurve(
-                                    "address".tr(),
-                                    Colors.transparent,
-                                    radius: DimensionConstants.d15.r,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: DimensionConstants.d20.h,
-                              ),
-                              SizedBox(
-                                height: DimensionConstants.d60.h,
-                                child: TextFormField(
-                                  keyboardType: TextInputType.phone,
-                                  controller: provider.phoneNumberController,
-                                  decoration:
-                                  ViewDecoration.inputDecorationWithCurve(
-                                    "contactNumber".tr(),
-                                    Colors.transparent,
-                                    radius: DimensionConstants.d15.r,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: DimensionConstants.d20.h,
-                              ),
-                              SizedBox(
-                                height: DimensionConstants.d60.h,
-                                child: TextFormField(
-                                  keyboardType: TextInputType.phone,
-                                  controller: provider.whatsAppController,
-                                  decoration:
-                                  ViewDecoration.inputDecorationWithCurve(
-                                    "whatsApp".tr(),
-                                    Colors.transparent,
-                                    radius: DimensionConstants.d15.r,
-                                  ),
-                                ),
                               ),
                               SizedBox(
                                 height: DimensionConstants.d20.h,
@@ -415,48 +327,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: DimensionConstants.d20.h,
-                              ),
-                              SizedBox(
-                                height: DimensionConstants.d60.h,
-                                child: TextFormField(
-                                  controller: provider.ownerEmailController,
-                                  decoration:
-                                  ViewDecoration.inputDecorationWithCurve(
-                                    "email".tr(),
-                                    Colors.transparent,
-                                    radius: DimensionConstants.d15.r,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: DimensionConstants.d20.h,
-                              ),
-                              SizedBox(
-                                height: DimensionConstants.d60.h,
-                                child: TextFormField(
-                                  obscureText: provider.isPasswordVisible,
-                                  controller: provider.passwordController,
-                                  decoration: ViewDecoration
-                                      .inputDecorationWithCurvePassword(
-                                    "password".tr(),
-                                    Colors.transparent,
-                                    radius: DimensionConstants.d15.r,
-                                    suffixIcon: IconButton(
-                                        splashRadius: DimensionConstants.d1.r,
-                                        onPressed: () {
-                                          provider.visiblePassword();
-                                        },
-                                        icon: Icon(
-                                          provider.isPasswordVisible
-                                              ? Icons.visibility_off
-                                              : Icons.visibility,
-                                          color: ColorConstants.blackColor,
-                                        )),
-                                  ),
-                                ),
-                              ),
                               provider.state == ViewState.Busy
                                   ? Center(
                                 child: Padding(
@@ -484,7 +354,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       height: DimensionConstants.d54.h,
                                       width: DimensionConstants.d374.w,
                                       child: Center(
-                                        child: Text("signUp".tr())
+                                        child: Text("done".tr())
                                             .boldText(
                                             ColorConstants.whiteColor,
                                             DimensionConstants.d20.sp,
@@ -508,54 +378,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
         });
   }
 
-  movetoNext(BuildContext context, SignUpProvider provider) async {
+  movetoNext(BuildContext context, AddPetProvider provider) async {
     if (provider.imageFile == null) {
       DialogHelper.showMessage(context, "select_profile_image".tr());
     } else if (provider.bannerImage == null) {
       DialogHelper.showMessage(context, "select_background_image".tr());
-    } else if (provider.dogNameController.text.isEmpty) {
-      DialogHelper.showMessage(context, "enter_dog_name".tr());
-    } else if (provider.dogBreadController.text.isEmpty) {
-      DialogHelper.showMessage(context, "enter_dog_breed".tr());
+    } else if (provider.petNameController.text.isEmpty) {
+      DialogHelper.showMessage(context, "enter_pet_name".tr());
+    } else if (provider.petBreadController.text.isEmpty) {
+      DialogHelper.showMessage(context, "enter_pet_breed".tr());
     } else if (provider.datetime.text.isEmpty) {
       DialogHelper.showMessage(context, "select_age".tr());
-    } else if (provider.ownerNameController.text.isEmpty) {
-      DialogHelper.showMessage(context, "enter_name".tr());
-    } else if (provider.ownerSurnameController.text.isEmpty) {
-      DialogHelper.showMessage(context, "enter_surname".tr());
-    } else if (provider.addressController.text.isEmpty) {
-      DialogHelper.showMessage(context, "enter_address".tr());
-    } else if (provider.phoneNumberController.text.isEmpty) {
-      DialogHelper.showMessage(context, "enter_contact_number".tr());
-    } else if (provider.whatsAppController.text.isEmpty) {
-      DialogHelper.showMessage(context, "enter_contact_number".tr());
     } else if (provider.veterinaryNumberController.text.isEmpty) {
       DialogHelper.showMessage(context, "enter_chip_number".tr());
     }else if (provider.descriptionController.text.isEmpty) {
       DialogHelper.showMessage(context, "add_description".tr());
     }
-    else if (provider.ownerEmailController.text.trim().isEmpty) {
-      DialogHelper.showMessage(context, 'empty_email'.tr());
-    } else if (!Validations.emailValidation(
-        provider.ownerEmailController.text.trim())) {
-      DialogHelper.showMessage(context, 'invalid_email'.tr());
-    } else if (provider.passwordController.text.trim().isEmpty) {
-      DialogHelper.showMessage(context, "empty_password".tr());
-    } else if (provider.passwordController.text.length < 6) {
-      DialogHelper.showMessage(context, 'password_length_error'.tr());
-    } else {
+   else {
       KeyboardHelper.hideKeyboard(context);
-      provider.signUpUser(
+      provider.Addpet(
         context,
-        provider.dogNameController.text,
+        provider.petNameController.text,
         provider.gender.toString(),
-        provider.dogBreadController.text,
-        provider.ownerNameController.text,
-        provider.addressController.text,
-        provider.phoneNumberController.text,
-        provider.whatsAppController.text,
-        provider.ownerEmailController.text,
-        provider.passwordController.text,
+        provider.petBreadController.text,
         provider.veterinaryNumberController.text,
         provider.dateMilisec,
         provider.imageFile!,

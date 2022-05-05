@@ -1,5 +1,4 @@
-import 'package:dog_app/constants/dimension_constants.dart';
-import 'package:dog_app/constants/route_constants.dart';
+
 import 'package:dog_app/helper/dialogue_helper.dart';
 import 'package:dog_app/provider/dashboard_provider.dart';
 import 'package:dog_app/provider/nfc_session.dart';
@@ -7,7 +6,6 @@ import 'package:dog_app/provider/nfc_write.dart';
 import 'package:dog_app/views/base_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nfc_manager/nfc_manager.dart';
 import 'package:provider/provider.dart';
 

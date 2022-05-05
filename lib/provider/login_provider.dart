@@ -24,9 +24,7 @@ class LoginProvider extends BaseProvider {
   }
   Future<void> login(
       BuildContext context, String email, String password) async {
-
     setState(ViewState.Busy);
-
     try {
       var model = await api.login(email, password);
       if (model.success) {

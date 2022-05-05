@@ -1,18 +1,18 @@
-
-class AddPetResponse {
+class GetPetDetailsResponse {
   late bool success;
-  late String message;
-  String? jwtToken;
-  Data? data;
+  List<Data> data = [];
 
-  AddPetResponse.fromJson(Map<String, dynamic> json) {
+  GetPetDetailsResponse.fromJson(Map<String, dynamic> json) {
     success = json["success"];
-    message = json["message"];
-    jwtToken = json["jwtToken"] != null ? (json["jwtToken"]) : null;
-    data = json["data"] != null ? Data.fromJson(json["data"]) : null;
+    if(json['data'] != null){
+      List<Data> list = [];
+      for(int i = 0 ; i < json['data'].length ; i++){
+        list.add(Data.fromJson(json['data'][i]));
+      }
+      data = list;
+    }
   }
 }
-
 class Data {
   late String petName;
   late String petBreed;
@@ -20,14 +20,13 @@ class Data {
   late String description;
   late String image;
   late String id;
+  late String userId;
+  late String veterinaryNumber;
   late String bannerImage;
   late int petBirthDate;
-  late String veterinaryNumber;
-
-
-
   Data.fromJson(Map<String, dynamic> json) {
     id = json["_id"];
+    userId = json["userId"];
     petName = json["petName"];
     petBreed = json["petBreed"];
     petSex = json["petSex"];
@@ -36,5 +35,6 @@ class Data {
     bannerImage = json["bannerImage"];
     petBirthDate = json["petBirthDate"];
     veterinaryNumber = json["veterinaryNumber"];
+
   }
 }

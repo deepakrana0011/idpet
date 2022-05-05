@@ -78,7 +78,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                   Padding(
                     padding: EdgeInsets.only(
                         left: DimensionConstants.d22.w,
-                        right: DimensionConstants.d200.w),
+                        right: DimensionConstants.d150.w),
                     child: Text("enterOtpCodeHere".tr()).regularText(
                         ColorConstants.blackColor,
                         DimensionConstants.d18.sp,

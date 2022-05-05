@@ -18,7 +18,7 @@ import 'package:provider/provider.dart';
 Future<void> startSession({
   required BuildContext context,
   required Future<String?> Function(NfcTag) handleTag,
-  String alertMessage = "Hold your device near the item",
+  String alertMessage = "hold_your_device_near_the_item",
 }) async {
   if (!(await NfcManager.instance.isAvailable())) {
     return showDialog(
@@ -31,12 +31,12 @@ Future<void> startSession({
     return showDialog(
         barrierDismissible: false,
         context: context,
-        builder: (context) => AndroidSessionDialog(alertMessage, handleTag));
+        builder: (context) => AndroidSessionDialog(alertMessage.tr(), handleTag));
   }
 
   if (Platform.isIOS)
     return NfcManager.instance.startSession(
-      alertMessage: alertMessage,
+      alertMessage: alertMessage.tr(),
       onDiscovered: (tag) async {
         try {
           final result = await handleTag(tag);

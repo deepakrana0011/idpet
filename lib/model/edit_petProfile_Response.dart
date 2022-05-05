@@ -1,18 +1,14 @@
-
-class AddPetResponse {
+class EditPetProfileResponse {
   late bool success;
   late String message;
-  String? jwtToken;
   Data? data;
 
-  AddPetResponse.fromJson(Map<String, dynamic> json) {
+  EditPetProfileResponse.fromJson(Map<String, dynamic> json) {
     success = json["success"];
     message = json["message"];
-    jwtToken = json["jwtToken"] != null ? (json["jwtToken"]) : null;
     data = json["data"] != null ? Data.fromJson(json["data"]) : null;
   }
 }
-
 class Data {
   late String petName;
   late String petBreed;
@@ -38,3 +34,4 @@ class Data {
     veterinaryNumber = json["veterinaryNumber"];
   }
 }
+

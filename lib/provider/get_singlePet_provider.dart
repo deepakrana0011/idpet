@@ -1,4 +1,3 @@
-/*
 import 'dart:io';
 
 import 'package:dog_app/enum/save_token.dart';
@@ -7,29 +6,26 @@ import 'package:dog_app/helper/date_functions.dart';
 import 'package:dog_app/helper/dialogue_helper.dart';
 import 'package:dog_app/helper/shared_pref.dart';
 import 'package:dog_app/locator.dart';
-import 'package:dog_app/model/getUserResponse.dart';
+import 'package:dog_app/model/getSinglePetDetailResponse.dart';
 import 'package:dog_app/provider/base_provider.dart';
 import 'package:dog_app/services/fetchException.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 
-class HomeScreenProvider extends BaseProvider {
- GetDetailsResponse? details;
- SaveToken saveToken = locator<SaveToken>();
+class GetSinglePetProvider extends BaseProvider {
+//  SaveToken saveToken = locator<SaveToken>();
   var datetime;
-  Future<void> getHomeDetail(BuildContext context) async {
+  Data? Details;
+  Future<void> getSinglePetDetail(BuildContext context ,String id) async {
     setState(ViewState.Busy);
     try {
-      var model = await api.getDeatils();
-      details = model;
+      var model = await api.getSinglePetDeatils(id);
       setState(ViewState.Idle);
       if (model.success) {
-        saveToken.id=model.data!.id;
-       */
-/* datetime= getDateDiffInYears(details!.data!.dogBirthDate);
+        Details = model.data;
+        datetime= getDateDiffInYears(model.data!.petBirthDate);
         SharedPref.prefs
-            ?.setInt(SharedPref.DOG_BIRTH_DATE, details!.data!.dogBirthDate);*//*
-
+            ?.setInt(SharedPref.PET_BIRTH_DATE, model.data!.petBirthDate);
       } else {}
     } on FetchDataException catch (c) {
       setState(ViewState.Idle);
@@ -41,4 +37,3 @@ class HomeScreenProvider extends BaseProvider {
   }
 
 }
-*/

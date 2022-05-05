@@ -170,40 +170,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               SizedBox(
                                 height: DimensionConstants.d20.h,
                               ),
-                              SizedBox(
-                                height: DimensionConstants.d60.h,
-                                child: TextFormField(
-                                  controller:
-                                      provider.veterinaryNumberController,
-                                  decoration:
-                                      ViewDecoration.inputDecorationWithCurve(
-                                    "chipNumber".tr(),
-                                    Colors.transparent,
-                                    radius: DimensionConstants.d15.r,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: DimensionConstants.d20.h,
-                              ),
-                              SizedBox(
-                                height: DimensionConstants.d110.h,
-                                child: TextFormField(
-                                  maxLines: 3,
-                                  textCapitalization:
-                                  TextCapitalization.sentences,
-                                  controller: provider.descriptionController,
-                                  decoration:
-                                  ViewDecoration.inputDecorationWithCurve(
-                                    "Note_and_info".tr(),
-                                    Colors.transparent,
-                                    radius: DimensionConstants.d15.r,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: DimensionConstants.d20.h,
-                              ),
+
+
                               SizedBox(
                                 height: DimensionConstants.d60.h,
                                 child: TextFormField(
@@ -295,17 +263,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   movetoNext(BuildContext context, SignUpProvider provider) async {
-    if (provider.imageFile == null) {
-      DialogHelper.showMessage(context, "select_profile_image".tr());
-    } else if (provider.bannerImage == null) {
-      DialogHelper.showMessage(context, "select_background_image".tr());
-    } else if (provider.dogNameController.text.isEmpty) {
-      DialogHelper.showMessage(context, "enter_dog_name".tr());
-    } else if (provider.dogBreadController.text.isEmpty) {
-      DialogHelper.showMessage(context, "enter_dog_breed".tr());
-    } else if (provider.datetime.text.isEmpty) {
-      DialogHelper.showMessage(context, "select_age".tr());
-    } else if (provider.ownerNameController.text.isEmpty) {
+    if (provider.ownerNameController.text.isEmpty) {
       DialogHelper.showMessage(context, "enter_name".tr());
     } else if (provider.ownerSurnameController.text.isEmpty) {
       DialogHelper.showMessage(context, "enter_surname".tr());
@@ -315,12 +273,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       DialogHelper.showMessage(context, "enter_contact_number".tr());
     } else if (provider.whatsAppController.text.isEmpty) {
       DialogHelper.showMessage(context, "enter_contact_number".tr());
-    } else if (provider.veterinaryNumberController.text.isEmpty) {
-      DialogHelper.showMessage(context, "enter_chip_number".tr());
-    }else if (provider.descriptionController.text.isEmpty) {
-      DialogHelper.showMessage(context, "add_description".tr());
-    }
-    else if (provider.ownerEmailController.text.trim().isEmpty) {
+    } else if (provider.ownerEmailController.text.trim().isEmpty) {
       DialogHelper.showMessage(context, 'empty_email'.tr());
     } else if (!Validations.emailValidation(
         provider.ownerEmailController.text.trim())) {
@@ -333,19 +286,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
       KeyboardHelper.hideKeyboard(context);
       provider.signUpUser(
         context,
-        provider.dogNameController.text,
-        provider.gender.toString(),
-        provider.dogBreadController.text,
         provider.ownerNameController.text,
         provider.addressController.text,
         provider.phoneNumberController.text,
         provider.whatsAppController.text,
         provider.ownerEmailController.text,
         provider.passwordController.text,
-        provider.veterinaryNumberController.text,
-        provider.dateMilisec,
-        provider.imageFile!,
-        provider.bannerImage!,
       );
     }
   }

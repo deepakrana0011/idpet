@@ -15,4 +15,7 @@ class ImagesConstants {
   static const edit = "images/edit.svg";
   static const logOut = "images/logOut.svg";
   static const nfcScanner ="images/nfcScanner.png";
+  static const addPet ="images/addPet.svg";
+  static const logo ="images/logo.png";
+  static const fwdVector ="images/fwdVector.svg";
 }

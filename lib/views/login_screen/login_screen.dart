@@ -103,7 +103,7 @@ class LoginScreen extends StatelessWidget {
                             Padding(
                                 padding: EdgeInsets.only(
                                     top: DimensionConstants.d10.h,
-                                    left: DimensionConstants.d216.w),
+                                    left: DimensionConstants.d190.w),
                                 child: GestureDetector(
                                   onTap: () {
                                     Navigator.of(context).pushNamed(

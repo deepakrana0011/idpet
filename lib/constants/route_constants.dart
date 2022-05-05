@@ -9,4 +9,10 @@ class RoutesConstants {
   static const profileScreen = "profileScreen";
   static const editProfile = "editProfile";
   static const nfcScan = "nfcScan";
+  static const petHome ="petHome";
+  static const addPetInfo ="addPetInfo";
+  static const petProfileScreen ="petProfileScreen";
+  static const editPetProfileScreen ="editPetProfileScreen";
+  static const singlePetDetailsScreen ="singlePetDetailsScreen";
+  static const selectPetScreen ="SelectPetScreen";
 }
